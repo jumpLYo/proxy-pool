@@ -9,9 +9,9 @@
     </appender>
 
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/mnt/logs/proxy-pool.log</file>
+        <file>/data/logs/proxy-pool.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/mnt/logs/proxy-pool-%d.log</fileNamePattern>
+            <fileNamePattern>/data/logs/proxy-pool-%d.log</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder charset="UTF-8">
