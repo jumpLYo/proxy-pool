@@ -44,11 +44,11 @@ docker部署
 
 ## 接口
 
-### 可用代理列表 http://frp.harvies.ml:22227/proxy/list?offset=0&limit=10
+### 可用代理列表 http://121.199.57.1:9002/proxy/list?offset=0&limit=10
 
-### 随机获取一个可用代理 http://frp.harvies.ml:22227/proxy/get
+### 随机获取一个可用代理 http://121.199.57.1:9002/proxy/get
 
-> 其他接口见swagger接口文档 http://frp.harvies.ml:22227/doc.html
+> 其他接口见swagger接口文档 http://121.199.57.1:9002/doc.html
 
 ## 待办事项
 1. 项目maven模块化(方便其他项目依赖)
@@ -56,8 +56,17 @@ docker部署
 
 ## 演示程序(个人电脑docker容器里的)
 
-http://frp.harvies.ml:22227/proxy/list
+http://121.199.57.1:9002/proxy/list
 
+
+## Alibaba Cloud Toolkit部署
+![](https://cdn.jsdelivr.net/gh/harvies/oss@master/2020/01/05/20202505192500042-image.png)
+restart.sh
+```bash
+#!/bin/bash
+pkill -f proxy-pool.jar
+nohup java -jar /app/proxy-pool/proxy-pool.jar --spring.profiles.active=test > nohup.log 2>&1 &
+```
 
 ## docker打包
 
