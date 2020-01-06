@@ -1,9 +1,9 @@
 package io.github.harvies.proxypool.core.schedule;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import io.github.harvies.proxypool.core.service.ProxyService;
 import io.github.harvies.proxypool.api.domain.Proxy;
 import io.github.harvies.proxypool.core.service.CheckProxyService;
+import io.github.harvies.proxypool.core.service.ProxyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -23,7 +23,7 @@ public class CheckProxySchedule {
 
     private static ThreadFactoryBuilder threadFactoryBuilder = new ThreadFactoryBuilder()
             .setDaemon(false).setNameFormat("crawl proxy-thread-pool-%d");
-    private static ExecutorService executorService = new ThreadPoolExecutor(100, 100, 0,
+    private static ExecutorService executorService = new ThreadPoolExecutor(10, 10, 0,
             TimeUnit.SECONDS, new ArrayBlockingQueue<>(1000), threadFactoryBuilder.build());
 
 
@@ -45,6 +45,7 @@ public class CheckProxySchedule {
                 proxyList) {
             executorService.execute(() -> {
                 try {
+                    Thread.sleep(100);
                     checkProxyService.check(proxy);
                 } catch (Exception e) {
                     log.info("", e);
